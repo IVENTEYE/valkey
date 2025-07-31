@@ -1,38 +1,43 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head>
+  <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Главная</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/style.min.css"/>
 </head>
-<body>
+  <body>
     <div class="wrapper">
-        <header class="header">
+      <header class="header">
     <div class="header__wrapper">
         <div class="header__container container">
             <div class="header__body body-layout">
-                <div class="header__left body-layout__left">
-                    <nav class="header__menu body-layout__menu menu-header menu">
-                        <ul class="menu-header__list menu__list">
-                            <li class="menu-header__item menu__item">
-                                <a href="#">Доставка</a>
-                            </li>
-                            <li class="menu-header__item menu__item">
-                                <a href="#">Отзывы</a>
-                            </li>
-                        </ul>
-                    </nav>
+                <div class="header__left body-layout__left body-layout__column">
+                    <div class="body-layout__menu">
+                        <button type="button" class="menu__icon">
+                            <span></span>
+                        </button>
+                        <nav class="header__menu body-layout__menu menu-header menu">
+                            <ul class="menu-header__list menu__list">
+                                <li class="menu-header__item menu__item">
+                                    <a href="#">Доставка</a>
+                                </li>
+                                <li class="menu-header__item menu__item">
+                                    <a href="#">Отзывы</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
-                <div class="header__middle body-layout__middle">
+                <div class="header__middle body-layout__middle body-layout__column">
                     <div class="header__logo body-layout__logo">
                         <a href="#">
                             <img src="img/logo 2.svg" alt="Valkey Wear">
                         </a>
                     </div>
                 </div>
-                <div class="header__right right-header body-layout__right">
+                <div class="header__right right-header body-layout__right body-layout__column">
                     <div class="header__contact contact-header">
                         <a target="_blank" href="#" class="contact-header__btn right-header__btn">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g fill="none"><g clip-path="url(#akarIconsTelegramFill0)"><path fill="#FFF" fill-rule="evenodd" d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12S5.373 0 12 0s12 5.373 12 12M12.43 8.859c-1.167.485-3.5 1.49-6.998 3.014c-.568.226-.866.447-.893.663c-.046.366.412.51 1.034.705c.085.027.173.054.263.084c.613.199 1.437.432 1.865.441c.389.008.823-.152 1.302-.48c3.268-2.207 4.955-3.322 5.061-3.346c.075-.017.179-.039.249.024c.07.062.063.18.056.212c-.046.193-1.84 1.862-2.77 2.726c-.29.269-.495.46-.537.504c-.094.097-.19.19-.282.279c-.57.548-.996.96.024 1.632c.49.323.882.59 1.273.856c.427.291.853.581 1.405.943c.14.092.274.187.405.28c.497.355.944.673 1.496.623c.32-.03.652-.331.82-1.23c.397-2.126 1.179-6.73 1.36-8.628a2.111 2.111 0 0 0-.02-.472a.506.506 0 0 0-.172-.325c-.143-.117-.365-.142-.465-.14c-.451.008-1.143.249-4.476 1.635" clip-rule="evenodd"/></g><defs><clipPath id="akarIconsTelegramFill0"><path fill="#fff" d="M0 0h24v24H0z"/></clipPath></defs></g></svg>
@@ -40,8 +45,8 @@
                         <div class="favorite-header__body"></div>
                     </div>
                     <div class="header__favorite favorite-header">
-                        <button role="button" class="favorite-header__btn right-header__btn">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"><path fill="#fff" d="M22.45 6a5.47 5.47 0 0 1 3.91 1.64a5.7 5.7 0 0 1 0 8L16 26.13L5.64 15.64a5.7 5.7 0 0 1 0-8a5.48 5.48 0 0 1 7.82 0l2.54 2.6l2.53-2.58A5.44 5.44 0 0 1 22.45 6m0-2a7.47 7.47 0 0 0-5.34 2.24L16 7.36l-1.11-1.12a7.49 7.49 0 0 0-10.68 0a7.72 7.72 0 0 0 0 10.82L16 29l11.79-11.94a7.72 7.72 0 0 0 0-10.82A7.49 7.49 0 0 0 22.45 4"/></svg>
+                        <button role="button" class="favorite-header__btn right-header__btn favorite-btn">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640"><!--!Font Awesome Free v7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2025 Fonticons, Inc.--><path d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"/></svg>
                         </button>
                         <div class="favorite-header__body"></div>
                     </div>
@@ -56,116 +61,154 @@
         </div>
     </div>
 </header>
-        <main class="page">
-            <section class="page__sliders slider-page">
-                <div class="slider-page__container container">
-                    <div class="slider-page__body">
-                        <div class="slider-page__left slider-left slider swiper">
-                            <div class="slider-left__wrapper slider-wrapper swiper-wrapper">
-                                <div class="slider-left__slide slider-wrapper__slide swiper-slide">
-                                    <img src="img/sliders/left/01.jpg" alt="Демонстрация одежды">
-                                </div>
-                                <div class="slider-left__slide slider-wrapper__slide swiper-slide">
-                                    <img src="img/sliders/left/02.png" alt="Демонстрация одежды">
-                                </div>
-                                <div class="slider-left__slide slider-wrapper__slide swiper-slide">
-                                    <img src="img/sliders/left/03.png" alt="Демонстрация одежды">
-                                </div>
-                                <div class="slider-left__slide slider-wrapper__slide swiper-slide">
-                                    <img src="img/sliders/left/04.jpg" alt="Демонстрация одежды">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slider-page__center center-page">
-                            <div class="center-page__image">
-                                <img src="img/logo.svg" alt="">
-                            </div>
-                        </div>
-                        <div class="slider-page__right slider-right slider swiper">
-                            <div class="slider-right__wrapper slider-wrapper swiper-wrapper">
-                                <div class="slider-right__slide slider-wrapper__slide swiper-slide">
-                                    <img src="img/sliders/right/01.jpg" alt="Демонстрация одежды">
-                                </div>
-                                <div class="slider-right__slide slider-wrapper__slide swiper-slide">
-                                    <img src="img/sliders/right/02.jpg" alt="Демонстрация одежды">
-                                </div>
-                                <div class="slider-right__slide slider-wrapper__slide swiper-slide">
-                                    <img src="img/sliders/right/03.jpg" alt="Демонстрация одежды">
-                                </div>
-                                <div class="slider-right__slide slider-wrapper__slide swiper-slide">
-                                    <img src="img/sliders/right/04.jpg" alt="Демонстрация одежды">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+      <main class="page">
+        <!-- <section class="page__sliders slider-page">
+          <div class="slider-page__container container">
+            <div class="slider-page__body">
+              <div class="slider-page__left slider-left slider swiper">
+                <div class="slider-left__wrapper slider-wrapper swiper-wrapper">
+                  <div class="slider-left__slide slider-wrapper__slide swiper-slide">
+                    <img src="img/sliders/left/01.jpg" alt="Демонстрация одежды" />
+                  </div>
+                  <div class="slider-left__slide slider-wrapper__slide swiper-slide">
+                    <img src="img/sliders/left/02.png" alt="Демонстрация одежды" />
+                  </div>
+                  <div class="slider-left__slide slider-wrapper__slide swiper-slide">
+                    <img src="img/sliders/left/03.png" alt="Демонстрация одежды" />
+                  </div>
+                  <div class="slider-left__slide slider-wrapper__slide swiper-slide">
+                    <img src="img/sliders/left/04.jpg" alt="Демонстрация одежды" />
+                  </div>
                 </div>
-            </section>
-            <section class="page__cards cards-page">
-                <div class="cards-page__container container">
-                    <div class="cards-page__items items-cards">
-                        <article data-pid="1" class="items-cards__item item-card">
-                            <div class="item-card__photos">
-                                <div class="item-card__photo item-card__photo--cover">
-                                    <img src="" alt="">
-                                </div>
-                                <div class="item-card__photo">
-                                    <img src="" alt="">
-                                </div>
-                            </div>
-                            <div class="item-card__body body-card">
-                                .body-card
-                            </div>
-                        </article>
-                    </div>
+              </div>
+              <div class="slider-page__center center-page">
+                <div class="center-page__image">
+                  <img src="img/logo.svg" alt="" />
                 </div>
-            </section>
-        </main>
-        <footer class="footer">
-    <div class="footer__wrapper">
-        <div class="footer__container container">
-            <div class="footer__body body-layout">
-                <div class="footer__left body-layout__left">
-                    <nav class="footer__menu body-layout__menu menu-footer menu">
-                        <ul class="menu-footer__list menu__list">
-                            <li class="menu-footer__item menu__item">
-                                <a href="#">Доставка</a>
-                            </li>
-                            <li class="menu-footer__item menu__item">
-                                <a href="#">Отзывы</a>
-                            </li>
-                            <li class="menu-footer__item menu__item">
-                                <a href="#">Обратная связь</a>
-                            </li>
-                        </ul>
-                    </nav>
+              </div>
+              <div class="slider-page__right slider-right slider swiper">
+                <div class="slider-right__wrapper slider-wrapper swiper-wrapper">
+                  <div class="slider-right__slide slider-wrapper__slide swiper-slide">
+                    <img src="img/sliders/right/01.jpg" alt="Демонстрация одежды" />
+                  </div>
+                  <div class="slider-right__slide slider-wrapper__slide swiper-slide">
+                    <img src="img/sliders/right/02.jpg" alt="Демонстрация одежды" />
+                  </div>
+                  <div class="slider-right__slide slider-wrapper__slide swiper-slide">
+                    <img src="img/sliders/right/03.jpg" alt="Демонстрация одежды" />
+                  </div>
+                  <div class="slider-right__slide slider-wrapper__slide swiper-slide">
+                    <img src="img/sliders/right/04.jpg" alt="Демонстрация одежды" />
+                  </div>
                 </div>
-                <div class="footer__middle body-layout__middle">
-                    <div class="footer__logo body-layout__logo">
-                        <a href="#">
-                            <img src="img/logo 2.svg" alt="Valkey Wear">
-                        </a>
-                    </div>
-                </div>
-                <div class="footer__right right-footer body-layout__right">
-                    <nav class="footer__menu body-layout__menu menu-footer menu">
-                        <ul class="menu-footer__list menu__list">
-                            <li class="menu-footer__item menu__item">
-                                <a href="#">Публичная оферта</a>
-                            </li>
-                            <li class="menu-footer__item menu__item">
-                                <a href="#">Политика конфиденциальности</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+              </div>
             </div>
-            <p class="footer__copyright">Все права защищены © Valkey Wear. 2025</p>
-        </div>
-    </div>
-</footer>
+          </div>
+        </section>
+        <section class="page__cards cards-page">
+          <div class="cards-page__container container">
+            <div class="cards-page__items items-cards">
+              <article data-pid="1" class="items-cards__item item-card">
+                <div class="item-card__photos">
+                  <div class="item-card__photo">
+                    <img src="img/cards/01/01.jpg" alt="Футболка «Focus»" />
+                  </div>
+                  <div class="item-card__photo item-card__photo--cover">
+                    <img src="img/cards/01/01-hover.jpg" alt="Футболка «Focus»" />
+                  </div>
+                </div>
+                <div class="item-card__body body-card">
+                  <div class="body-card__info info-card">
+                    <h5 class="info-card__title">Футболка «Focus»</h5>
+                    <div class="info-card__cost cost-card">
+                      <span class="cost-card__item cost-card__item--old">2690 ₽</span>
+                      <span class="cost-card__item">2290 ₽</span>
+                    </div>
+                  </div>
+                  <div class="body-card__action action-card">
+                    <button type="button" class="action-card__btn favorite-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                        <path
+                          d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="item-card__buy buy-card">
+                  <button class="buy-card__btn main-button">Добавить в корзину</button>
+                </div>
+              </article>
+              <article data-pid="2" class="items-cards__item item-card">
+                <div class="item-card__photos">
+                  <div class="item-card__photo">
+                    <img src="img/cards/01/01.jpg" alt="Футболка «Focus»" />
+                  </div>
+                  <div class="item-card__photo item-card__photo--cover">
+                    <img src="img/cards/01/01-hover.jpg" alt="Футболка «Focus»" />
+                  </div>
+                </div>
+                <div class="item-card__body body-card">
+                  <div class="body-card__info info-card">
+                    <h5 class="info-card__title">Футболка «Focus»</h5>
+                    <div class="info-card__cost cost-card">
+                      <span class="cost-card__item cost-card__item--old">2690 ₽</span>
+                      <span class="cost-card__item">2290 ₽</span>
+                    </div>
+                  </div>
+                  <div class="body-card__action action-card">
+                    <button type="button" class="action-card__btn favorite-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                        <path
+                          d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="item-card__buy buy-card">
+                  <button class="buy-card__btn main-button">Добавить в корзину</button>
+                </div>
+              </article>
+              <article data-pid="3" class="items-cards__item item-card">
+                <div class="item-card__photos">
+                  <div class="item-card__photo">
+                    <img src="img/cards/01/01.jpg" alt="Футболка «Focus»" />
+                  </div>
+                  <div class="item-card__photo item-card__photo--cover">
+                    <img src="img/cards/01/01-hover.jpg" alt="Футболка «Focus»" />
+                  </div>
+                </div>
+                <div class="item-card__body body-card">
+                  <div class="body-card__info info-card">
+                    <h5 class="info-card__title">Футболка «Focus»</h5>
+                    <div class="info-card__cost cost-card">
+                      <span class="cost-card__item cost-card__item--old">2690 ₽</span>
+                      <span class="cost-card__item">2290 ₽</span>
+                    </div>
+                  </div>
+                  <div class="body-card__action action-card">
+                    <button type="button" class="action-card__btn favorite-btn">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                        <path
+                          d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="item-card__buy buy-card">
+                  <button class="buy-card__btn main-button">Добавить в корзину</button>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section> -->
+      </main>
+      
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="js/app.min.js"></script>
-</body>
+  </body>
 </html>
