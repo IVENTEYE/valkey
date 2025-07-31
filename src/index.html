@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ru">
+@@include('html/head.html', {
+    'title': 'Главная' 
+})
+<body>
+    <div class="wrapper">
+        @@include('html/header.html')
+        <main class="page">
+            <section class="page__sliders slider-page">
+                <div class="slider-page__container container">
+                    <div class="slider-page__body">
+                        <div class="slider-page__left slider-left slider swiper">
+                            <div class="slider-left__wrapper slider-wrapper swiper-wrapper">
+                                <div class="slider-left__slide slider-wrapper__slide swiper-slide">
+                                    <img src="@img/sliders/left/01.jpg" alt="Демонстрация одежды">
+                                </div>
+                                <div class="slider-left__slide slider-wrapper__slide swiper-slide">
+                                    <img src="@img/sliders/left/02.png" alt="Демонстрация одежды">
+                                </div>
+                                <div class="slider-left__slide slider-wrapper__slide swiper-slide">
+                                    <img src="@img/sliders/left/03.png" alt="Демонстрация одежды">
+                                </div>
+                                <div class="slider-left__slide slider-wrapper__slide swiper-slide">
+                                    <img src="@img/sliders/left/04.jpg" alt="Демонстрация одежды">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="slider-page__center center-page">
+                            <div class="center-page__image">
+                                <img src="@img/logo.svg" alt="">
+                            </div>
+                        </div>
+                        <div class="slider-page__right slider-right slider swiper">
+                            <div class="slider-right__wrapper slider-wrapper swiper-wrapper">
+                                <div class="slider-right__slide slider-wrapper__slide swiper-slide">
+                                    <img src="@img/sliders/right/01.jpg" alt="Демонстрация одежды">
+                                </div>
+                                <div class="slider-right__slide slider-wrapper__slide swiper-slide">
+                                    <img src="@img/sliders/right/02.jpg" alt="Демонстрация одежды">
+                                </div>
+                                <div class="slider-right__slide slider-wrapper__slide swiper-slide">
+                                    <img src="@img/sliders/right/03.jpg" alt="Демонстрация одежды">
+                                </div>
+                                <div class="slider-right__slide slider-wrapper__slide swiper-slide">
+                                    <img src="@img/sliders/right/04.jpg" alt="Демонстрация одежды">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="page__cards cards-page">
+                <div class="cards-page__container container">
+                    <div class="cards-page__items items-cards">
+                        <article data-pid="1" class="items-cards__item item-card">
+                            <div class="item-card__photos">
+                                <div class="item-card__photo item-card__photo--cover">
+                                    <img src="" alt="">
+                                </div>
+                                <div class="item-card__photo">
+                                    <img src="" alt="">
+                                </div>
+                            </div>
+                            <div class="item-card__body body-card">
+                                .body-card
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </section>
+        </main>
+        @@include('html/footer.html')
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="js/app.min.js"></script>
+</body>
+</html>

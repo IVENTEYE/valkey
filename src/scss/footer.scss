@@ -1,0 +1,31 @@
+.footer {
+    flex: 0 0 auto;
+    background: rgb(19 19 19 / 93%);
+    backdrop-filter: blur(30px);
+    &__wrapper {
+        padding: 20px 0;
+    }
+    &__body {
+        margin-bottom: 14px;
+    }
+    &__copyright {
+        text-align: center;
+        margin-left: 73px;
+        color: #ffffffbb;
+        font-size: 12px;
+    }
+}
+
+.right-footer {
+    .menu-footer {
+        &__list {
+            display: block !important;
+            text-align: right;
+        }
+        &__item {
+            &:not(:last-child) {
+                margin-bottom: 5px;
+            }
+        }
+    }
+}
