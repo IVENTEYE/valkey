@@ -207,9 +207,14 @@
 .actions-info {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   &__quantity {
     flex: 1 1 auto;
     margin-right: 4px;
+  }
+  &__btn {
+    flex: 0 1 180px;
+    padding: 7px !important;
   }
 }
 
@@ -242,6 +247,9 @@
     span {
       margin-left: 5px;
     }
+  }
+  &__btn {
+    display: flex;
   }
 }
 

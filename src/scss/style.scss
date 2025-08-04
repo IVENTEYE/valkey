@@ -411,6 +411,9 @@ body {
   &__body {
     flex: 1 1 auto;
   }
+  &__buy {
+    display: flex;
+  }
 }
 
 .item-card__photos {
@@ -504,7 +507,8 @@ body {
   color: #000;
   background: rgb(255, 255, 255);
   padding: 10px;
-  width: 100%;
+  flex: 1;
+  min-width: 180px;
   border-radius: 15px;
   transition: background 0.2s ease-in-out;
   @media (any-hover: hover) {
@@ -534,6 +538,9 @@ body {
     @media (max-width: 991.99px) {
       padding: 0;
     }
+  }
+  &__close {
+
   }
 }
 
@@ -622,6 +629,7 @@ body {
 
 .thumbs-slider {
   &__wrapper {
+    max-width: 390px;
     justify-content: center;
     @media (max-width: 459.99px) {
       justify-content: space-between;
@@ -722,6 +730,11 @@ body {
         margin-bottom: 5px;
       }
     }
+  }
+  &__btn {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
   }
 }
 

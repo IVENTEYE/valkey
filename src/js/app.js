@@ -7,20 +7,38 @@ const header = document.querySelector('.header'),
   iconMenu = document.querySelector('.menu__icon'),
   menuBody = document.querySelector('.menu'),
   cartBtn = document.querySelector('.cart-header__btn'),
-  closeCartBtn = document.querySelector('.top-sidemenu__close'),
-  cartMenu = document.querySelector('.cart-header__body');
+  closeMenu = document.querySelector('.top-sidemenu__close'),
+  cartMenu = document.querySelector('.cart-header__body'),
+  favoriteBtn = document.querySelector('.favorite-header__btn'),
+  favoriteMenu = document.querySelector('.favorite-sidemenu');
+
+  const removeActive = () => {
+    document.body.classList.remove('lock');
+    if (cartMenu.classList.contains("_active")) {
+      cartMenu.classList.remove('_active');
+    }
+
+    if (favoriteMenu.classList.contains("_active")) {
+      favoriteMenu.classList.remove('_active');
+    }
+  };
 
 const documentActions = (e) => {
   const targetElement = e.target;
 
   if (!targetElement.closest('.sidemenu__body') && targetElement.closest('.sidemenu._active')) {
     cartMenu.classList.remove('_active');
+    favoriteMenu.classList.remove('_active');
     document.body.classList.remove('lock');
   }
 
   if (!targetElement.closest(".body-layout__menu")) {
     iconMenu.classList.remove('_active');
     menuBody.classList.remove('_active');
+  }
+
+  if (targetElement.closest(".top-sidemenu__close")) {
+    removeActive();
   }
 };
 
@@ -38,11 +56,13 @@ if (cartBtn) {
     cartMenu.classList.add('_active');
     document.body.classList.add('lock');
   });
+}
 
-  closeCartBtn.addEventListener('click', () => {
-    cartMenu.classList.remove('_active');
-    document.body.classList.remove('lock');
-  });
+if (favoriteBtn) {
+  favoriteBtn.addEventListener('click', () => {
+    favoriteMenu.classList.add('_active');
+    document.body.classList.add('lock');
+});
 }
 
 const removeClassMenu = () => {
@@ -118,14 +138,14 @@ const products = {
     sizes: ['46 RU / S', '48 RU / M', '50 RU / L', '52 RU / XL', '54 RU / XXL'],
   },
   2: {
-    title: 'Футболка «Focus»',
+    title: 'Зип-худи «Mindset»',
     description:
       'Focus on your dreams, goals, actions, losses, victories, failures, pain, discipline and the future',
     characteristics:
-      '— Оверсайз крой </br>  — 100% хлопок </br> — Плотность 180гр/м² </br> — DTF износостойкий принт </br> — Принт сзади/спереди </br> — Стирка при 30 градусов </br> ➕В подарок — вход в ТГК с музыкой в стиле real, а также самые лучшие фонки и эксклюзивные песни с фразами из разных аниме',
-    oldPrice: '2690 ₽',
-    price: '2290 ₽',
-    images: ['img/cards/01/01.jpg', 'img/cards/01/01-hover.jpg', 'img/cards/01/01.jpg'],
+      '— Оверсайз крой </br> — Материал: кашкорсе (французский трикотаж) + футер 3-х нитка </br> — Плотность 380гр/м² </br> — DTF износостойкий принт </br> — Принт сзади/спереди </br> — Стирка при 30 градусов',
+    oldPrice: '4950 ₽',
+    price: '4290 ₽',
+    images: ['img/cards/02/02.jpg', 'img/cards/02/02-hover.jpg', 'img/cards/02/02-sizes.jpg'],
     sizes: ['46 RU / S', '48 RU / M', '50 RU / L', '52 RU / XL', '54 RU / XXL'],
   },
   3: {
@@ -212,9 +232,19 @@ function popupOpen(currentPopup, productId) {
     if (!product) return;
 
     const sliderImages = document.querySelectorAll('.slide-popup__image img'),
-      thumbsSliderImages = document.querySelectorAll('.thumbs-slider__slide img');
+      sliderImagesWebp = document.querySelectorAll('.slide-popup__image source'),
+      thumbsSliderImages = document.querySelectorAll('.thumbs-slider__slide img'),
+      thumbsSliderImagesWebp = document.querySelectorAll('.thumbs-slider__slide source');
 
     for (let i = 0; i < sliderImages.length; i++) {
+      if (sliderImagesWebp.length && thumbsSliderImagesWebp.length) {
+        const imagesWebp = product.images[i].split('.') + "webp";
+
+        sliderImagesWebp[i].srcset = imagesWebp;
+        thumbsSliderImagesWebp[i].srcset = imagesWebp;
+        console.log(imagesWebp);
+        
+      }
       sliderImages[i].src = product.images[i];
       thumbsSliderImages[i].src = product.images[i];
     }
@@ -295,6 +325,8 @@ document.addEventListener('keydown', (e) => {
     popupClose(popupActive);
   }
 });
+
+
 
 (function () {
   //проверяем поддержку
