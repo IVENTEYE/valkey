@@ -112,6 +112,7 @@ if (document.querySelector('.slider-popup')) {
     spaceBetween: 10,
     slidesPerView: 4,
     freeMode: true,
+    centerInsufficientSlides: true,
     watchSlidesProgress: true,
   });
 
