@@ -238,15 +238,15 @@ function popupOpen(currentPopup, productId) {
 
     for (let i = 0; i < sliderImages.length; i++) {
       if (sliderImagesWebp.length && thumbsSliderImagesWebp.length) {
-        const imagesWebp = product.images[i].split('.') + "webp";
+        const imagesWebp = product.images[i].replace(/\.(jpg|jpeg|png)$/, '.webp');
 
         sliderImagesWebp[i].srcset = imagesWebp;
         thumbsSliderImagesWebp[i].srcset = imagesWebp;
-        console.log(imagesWebp);
-        
       }
       sliderImages[i].src = product.images[i];
+      sliderImages[i].alt = product.title;
       thumbsSliderImages[i].src = product.images[i];
+      thumbsSliderImages[i].alt = product.title;
     }
 
     document.querySelector('.body-characteristics__title').textContent = product.title;
