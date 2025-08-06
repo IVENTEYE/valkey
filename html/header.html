@@ -1,0 +1,214 @@
+<header class="header">
+  <div class="header__wrapper">
+    <div class="header__container container">
+      <div class="header__body body-layout">
+        <div class="header__left body-layout__left body-layout__column">
+          <div class="body-layout__menu">
+            <button type="button" class="menu__icon">
+              <span></span>
+            </button>
+            <nav class="header__menu body-layout__menu menu-header menu">
+              <ul class="menu-header__list menu__list">
+                <li class="menu-header__item menu__item">
+                  <a href="#">Доставка</a>
+                </li>
+                <li class="menu-header__item menu__item">
+                  <a href="#">Отзывы</a>
+                </li>
+                <li class="menu-header__item menu__item">
+                  <a href="#">Обратная связь</a>
+                </li>
+                <li class="menu-header__item menu__item menu__item--mobile">
+                  <a href="#">Телеграм канал</a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <div class="header__middle body-layout__middle body-layout__column">
+          <div class="header__logo body-layout__logo">
+            <a href="#">
+              <img src="@img/logo 2.svg" alt="Valkey Wear" />
+            </a>
+          </div>
+        </div>
+        <div class="header__right right-header body-layout__right body-layout__column">
+          <div class="header__contact contact-header">
+            <a target="_blank" href="#" class="contact-header__btn right-header__btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <g fill="none">
+                  <g clip-path="url(#akarIconsTelegramFill0)">
+                    <path
+                      fill="#FFF"
+                      fill-rule="evenodd"
+                      d="M24 12c0 6.627-5.373 12-12 12S0 18.627 0 12S5.373 0 12 0s12 5.373 12 12M12.43 8.859c-1.167.485-3.5 1.49-6.998 3.014c-.568.226-.866.447-.893.663c-.046.366.412.51 1.034.705c.085.027.173.054.263.084c.613.199 1.437.432 1.865.441c.389.008.823-.152 1.302-.48c3.268-2.207 4.955-3.322 5.061-3.346c.075-.017.179-.039.249.024c.07.062.063.18.056.212c-.046.193-1.84 1.862-2.77 2.726c-.29.269-.495.46-.537.504c-.094.097-.19.19-.282.279c-.57.548-.996.96.024 1.632c.49.323.882.59 1.273.856c.427.291.853.581 1.405.943c.14.092.274.187.405.28c.497.355.944.673 1.496.623c.32-.03.652-.331.82-1.23c.397-2.126 1.179-6.73 1.36-8.628a2.111 2.111 0 0 0-.02-.472a.506.506 0 0 0-.172-.325c-.143-.117-.365-.142-.465-.14c-.451.008-1.143.249-4.476 1.635"
+                      clip-rule="evenodd"
+                    />
+                  </g>
+                  <defs>
+                    <clipPath id="akarIconsTelegramFill0">
+                      <path fill="#fff" d="M0 0h24v24H0z" />
+                    </clipPath>
+                  </defs>
+                </g>
+              </svg>
+            </a>
+            <div class="favorite-header__body"></div>
+          </div>
+          <div class="header__favorite favorite-header">
+            <button role="button" class="favorite-header__btn right-header__btn favorite-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                <path
+                  d="M305 151.1L320 171.8L335 151.1C360 116.5 400.2 96 442.9 96C516.4 96 576 155.6 576 229.1L576 231.7C576 343.9 436.1 474.2 363.1 529.9C350.7 539.3 335.5 544 320 544C304.5 544 289.2 539.4 276.9 529.9C203.9 474.2 64 343.9 64 231.7L64 229.1C64 155.6 123.6 96 197.1 96C239.8 96 280 116.5 305 151.1z"
+                />
+              </svg>
+            </button>
+          </div>
+          <div class="header__cart cart-header">
+            <!-- <div class="cart-header__count">1</div> -->
+            <button role="button" class="cart-header__btn right-header__btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="32"
+                height="32"
+                viewBox="0 0 1024 1024"
+              >
+                <path
+                  fill="#fff"
+                  d="M832 312H696v-16c0-101.6-82.4-184-184-184s-184 82.4-184 184v16H192c-17.7 0-32 14.3-32 32v536c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V344c0-17.7-14.3-32-32-32m-432-16c0-61.9 50.1-112 112-112s112 50.1 112 112v16H400zm392 544H232V384h96v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h224v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h96z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <aside class="cart-header__body sidemenu">
+    <div class="sidemenu__body">
+      <div class="sidemenu__top top-sidemenu">
+        <h4 class="top-sidemenu__label">Корзина</h4>
+        <button type="button" class="top-sidemenu__close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+            <path
+              d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="sidemenu__items items-sidemenu">
+        <div class="items-sidemenu__item">
+          <div class="items-sidemenu__image">
+            <img src="@img/cards/01/01.jpg" alt="" />
+          </div>
+          <div class="items-sidemenu__info info-items">
+            <div class="info-items__top top-info">
+              <div class="top-info__column">
+                <h4 class="top-info__title">Футболка «Focus»</h4>
+                <div class="top-info__size">Размер: <span>46 RU / S</span></div>
+              </div>
+              <div class="top-info__column">
+                <div class="top-info__cost cost-card">
+                  <span class="cost-card__item cost-card__item--old">2690 ₽</span>
+                  <span class="cost-card__item">2290 ₽</span>
+                </div>
+                <div class="top-info__discound">Save <span>13%</span></div>
+              </div>
+            </div>
+            <div class="info-items__actions actions-info">
+              <div class="actions-info__quantity quantity">
+                <div class="quantity__body">
+                  <button class="quantity__btn quantity__btn--minus" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                      <path
+                        fill="#fff"
+                        d="M96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z"
+                      />
+                    </svg>
+                  </button>
+                  <input class="quantity__result" type="number" value="1" min="1" />
+                  <button class="quantity__btn quantity__btn--plus" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                      <path
+                        fill="#fff"
+                        d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <div class="actions-info__delete delete-actions">
+                <button class="delete-actions__btn" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                    <path
+                      d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sidemenu__footer footer-submenu">
+        <div class="footer-submenu__total">
+          Итог:
+          <span>2290 ₽</span>
+        </div>
+        <div class="footer-submenu__btn btn-submenu">
+          <button type="button" class="btn-submenu__item main-button">Оформление заказа</button>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <aside class="favorite-sidemenu sidemenu">
+    <div class="sidemenu__body">
+      <div class="sidemenu__top top-sidemenu">
+        <h4 class="top-sidemenu__label">Избранное</h4>
+        <button type="button" class="top-sidemenu__close">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+            <path
+              d="M183.1 137.4C170.6 124.9 150.3 124.9 137.8 137.4C125.3 149.9 125.3 170.2 137.8 182.7L275.2 320L137.9 457.4C125.4 469.9 125.4 490.2 137.9 502.7C150.4 515.2 170.7 515.2 183.2 502.7L320.5 365.3L457.9 502.6C470.4 515.1 490.7 515.1 503.2 502.6C515.7 490.1 515.7 469.8 503.2 457.3L365.8 320L503.1 182.6C515.6 170.1 515.6 149.8 503.1 137.3C490.6 124.8 470.3 124.8 457.8 137.3L320.5 274.7L183.1 137.4z"
+            />
+          </svg>
+        </button>
+      </div>
+      <div class="sidemenu__items items-sidemenu">
+        <div class="items-sidemenu__item">
+          <div class="items-sidemenu__image">
+            <img src="@img/cards/01/01.jpg" alt="" />
+          </div>
+          <div class="items-sidemenu__info info-items">
+            <div class="info-items__top top-info">
+              <div class="top-info__column">
+                <h4 class="top-info__title">Футболка «Focus»</h4>
+                <div class="top-info__size">Размер: <span>46 RU / S</span></div>
+              </div>
+              <div class="top-info__column">
+                <div class="top-info__cost cost-card">
+                  <span class="cost-card__item cost-card__item--old">2690 ₽</span>
+                  <span class="cost-card__item">2290 ₽</span>
+                </div>
+                <div class="top-info__discound">Save <span>13%</span></div>
+              </div>
+            </div>
+            <div class="info-items__actions actions-info">
+                <button href="popup" class="actions-info__btn main-button popup-link">
+                  Добавить в корзину
+                </button>
+              <div class="actions-info__delete delete-actions">
+                <button class="delete-actions__btn" type="button">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                    <path
+                      d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z"
+                    />
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+</header>
