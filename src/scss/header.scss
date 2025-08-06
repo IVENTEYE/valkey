@@ -51,18 +51,20 @@
 .cart-header {
   position: relative;
   &__count {
-    position: absolute;
-    top: 0;
-    left: 0;
-    min-width: 18px;
-    height: 18px;
-    font-size: 12px;
-    border-radius: 50%;
-    background-color: #fff;
-    color: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    span {
+      position: absolute;
+      top: 0;
+      left: 0;
+      min-width: 18px;
+      height: 18px;
+      font-size: 12px;
+      border-radius: 50%;
+      background-color: #fff;
+      color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
   }
   &__btn {
     @media (any-hover: hover) {
