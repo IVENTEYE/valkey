@@ -12,16 +12,16 @@ const header = document.querySelector('.header'),
   favoriteBtn = document.querySelector('.favorite-header__btn'),
   favoriteMenu = document.querySelector('.favorite-sidemenu');
 
-  const removeActive = () => {
-    document.body.classList.remove('lock');
-    if (cartMenu.classList.contains("_active")) {
-      cartMenu.classList.remove('_active');
-    }
+const removeActive = () => {
+  document.body.classList.remove('lock');
+  if (cartMenu.classList.contains('_active')) {
+    cartMenu.classList.remove('_active');
+  }
 
-    if (favoriteMenu.classList.contains("_active")) {
-      favoriteMenu.classList.remove('_active');
-    }
-  };
+  if (favoriteMenu.classList.contains('_active')) {
+    favoriteMenu.classList.remove('_active');
+  }
+};
 
 if (iconMenu) {
   iconMenu.addEventListener('click', () => {
@@ -30,18 +30,18 @@ if (iconMenu) {
   });
 }
 
-if (cartBtn) {
-  cartBtn.addEventListener('click', () => {
-    cartMenu.classList.add('_active');
-    document.body.classList.add('lock');
-  });
-}
+// if (cartBtn) {
+//   cartBtn.addEventListener('click', () => {
+//     cartMenu.classList.add('_active');
+//     document.body.classList.add('lock');
+//   });
+// }
 
 if (favoriteBtn) {
   favoriteBtn.addEventListener('click', () => {
     favoriteMenu.classList.add('_active');
     document.body.classList.add('lock');
-});
+  });
 }
 
 const removeClassMenu = () => {
@@ -187,7 +187,7 @@ if (popupLinks.length > 0) {
     item.addEventListener('click', function (e) {
       const popupName = item.getAttribute('href').replace('#', ''),
         currentPopup = document.getElementById(popupName);
-        productId = item.closest('.item-card').dataset.pid;
+      productId = item.closest('.item-card').dataset.pid;
       popupOpen(currentPopup, productId);
       e.preventDefault();
     });
@@ -263,7 +263,7 @@ function popupClose(popupActive, doUnLock = true) {
   if (unlock) {
     popupActive.classList.remove('active');
     productId = null;
-    popupActive.dataset.pid = "";
+    popupActive.dataset.pid = '';
     if (doUnLock) {
       bodyUnLock();
     }
@@ -312,91 +312,124 @@ document.addEventListener('keydown', (e) => {
 });
 
 const addToCart = (productButton, productId) => {
-  if (!productButton.classList.contains("_hold")) {
-    productButton.classList.add("_hold");
-
-    const cartCount = document.querySelector(".cart-header__count");
-  }
+  const cartCount = document.querySelector('.cart-header__count');
 
   if (productId) {
-    const productsContainer = document.querySelector(".items-sidemenu");
-    const currentProduct = products[productId];
     updateCart(productButton, productId);
-    // const discountPercent = "oldPrice" in currentProduct  ? Math.round(100 - (currentProduct.price / currentProduct.oldPrice) * 100) : 0;
-    // let productTemplate = `
-    //   <article data-cart-pid="${productId}" class="items-sidemenu__item">
-    //       <div class="items-sidemenu__image">
-    //         <img src="${currentProduct.images[0]}" alt="${currentProduct.title}" />
-    //       </div>
-    //       <div class="items-sidemenu__info info-items">
-    //         <div class="info-items__top top-info">
-    //           <div class="top-info__column">
-    //             <h4 class="top-info__title">${currentProduct.title}</h4>
-    //             <div class="top-info__size">Размер: <span>46 RU / S</span></div>
-    //           </div>
-    //           <div class="top-info__column">
-    //             <div class="top-info__cost cost-card">
-    //             ${
-    //               currentProduct.oldPrice ? `<span class="cost-card__item cost-card__item--old">${currentProduct.oldPrice} ₽</span>` : ""
-    //             }
-    //               <span class="cost-card__item">${currentProduct.price} ₽</span>
-    //             </div>
-    //             ${
-    //               discountPercent > 0 ? `<div class="top-info__discound">Save <span>${discountPercent}%</span></div>` : ""
-    //             }
-    //           </div>
-    //         </div>
-    //         <div class="info-items__actions actions-info">
-    //           <div class="actions-info__quantity quantity">
-    //             <div class="quantity__body">
-    //               <button class="quantity__btn quantity__btn--minus" type="button">
-    //                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-    //                   <path
-    //                     fill="#fff"
-    //                     d="M96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z"
-    //                   />
-    //                 </svg>
-    //               </button>
-    //               <input class="quantity__result" type="number" value="1" min="1" />
-    //               <button class="quantity__btn quantity__btn--plus" type="button">
-    //                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-    //                   <path
-    //                     fill="#fff"
-    //                     d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
-    //                   />
-    //                 </svg>
-    //               </button>
-    //             </div>
-    //           </div>
-    //           <div class="actions-info__delete delete-actions">
-    //             <button class="delete-actions__btn" type="button">
-    //               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
-    //                 <path
-    //                   d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z"
-    //                 />
-    //               </svg>
-    //             </button>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </article>
-    //   `;
-    //   productsContainer.insertAdjacentHTML('beforeend', productTemplate);
   }
 };
 
 const updateCart = (productButton, productId, isProductAdd = true) => {
-  const cart = document.querySelector(".cart-header");
-  const cartIcon = document.querySelector(".cart-header__count");
-  const cartQuantity = cartIcon.querySelector("span");
+  const productsContainer = document.querySelector('.items-sidemenu');
+  const currentProduct = products[productId];
+
+  const cart = document.querySelector('.cart-header');
+  const cartIcon = document.querySelector('.cart-header__count');
+  const cartQuantity = cartIcon.querySelector('span');
   const cartProduct = document.querySelector(`[data-cart-pid="${productId}"]`);
-  const cartList = document.querySelector(".cart-list");
+  const cartList = document.querySelector('.cart-list');
+
+  if (!cartProduct) {
+    const product = document.querySelector(`[data-pid="${productId}"]`);
+    const cartProductImage = product.querySelector('.item-card__photo').innerHTML;
+    const cartProductTitle = product.querySelector('.info-card__title').textContent;
+    const cartProductOldPrice = product.querySelector('.cost-card__item--old span').textContent;
+    const cartProductPrice = product.querySelector('.cost-card__item span').textContent;
+
+    const discountPercent =
+      'oldPrice' in currentProduct
+        ? Math.round(100 - (currentProduct.price / currentProduct.oldPrice) * 100)
+        : 0;
+
+    let productTemplate = `
+        <article data-cart-pid="${productId}" class="items-sidemenu__item">
+            <div class="items-sidemenu__image">
+              ${cartProductImage}
+            </div>
+            <div class="items-sidemenu__info info-items">
+              <div class="info-items__top top-info">
+                <div class="top-info__column">
+                  <h4 class="top-info__title">${cartProductTitle}</h4>
+                  <div class="top-info__size">Размер: <span>46 RU / S</span></div>
+                </div>
+                <div class="top-info__column">
+                  <div class="top-info__cost cost-card">
+                  ${
+                    cartProductOldPrice.length
+                      ? `<span class="cost-card__item cost-card__item--old">${cartProductOldPrice} ₽</span>`
+                      : ''
+                  }
+                    <span class="cost-card__item">${cartProductPrice} ₽</span>
+                  </div>
+                  ${
+                    discountPercent > 0
+                      ? `<div class="top-info__discound">Save <span>${discountPercent}%</span></div>`
+                      : ''
+                  }
+                </div>
+              </div>
+              <div class="info-items__actions actions-info">
+                <div class="actions-info__quantity quantity">
+                  <div class="quantity__body">
+                    <button class="quantity__btn quantity__btn--minus" type="button">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                        <path
+                          fill="#fff"
+                          d="M96 320C96 302.3 110.3 288 128 288L512 288C529.7 288 544 302.3 544 320C544 337.7 529.7 352 512 352L128 352C110.3 352 96 337.7 96 320z"
+                        />
+                      </svg>
+                    </button>
+                    <span class="quantity__result">1</span>
+                    <button class="quantity__btn quantity__btn--plus" type="button">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                        <path
+                          fill="#fff"
+                          d="M352 128C352 110.3 337.7 96 320 96C302.3 96 288 110.3 288 128L288 288L128 288C110.3 288 96 302.3 96 320C96 337.7 110.3 352 128 352L288 352L288 512C288 529.7 302.3 544 320 544C337.7 544 352 529.7 352 512L352 352L512 352C529.7 352 544 337.7 544 320C544 302.3 529.7 288 512 288L352 288L352 128z"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+                <div class="actions-info__delete delete-actions">
+                  <button class="delete-actions__btn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                      <path
+                        d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+    productsContainer.insertAdjacentHTML('beforeend', productTemplate);
+
+  } else {
+    const cartProductQuantity = cartProduct.querySelector(".quantity__result");
+    cartProductQuantity.innerHTML = ++cartProductQuantity.innerHTML;
+  }
 
   if (isProductAdd) {
     if (cartQuantity) {
       cartQuantity.innerHTML = ++cartQuantity.innerHTML;
     } else {
       cartIcon.insertAdjacentHTML('beforeend', `<span>1</span>`);
+    }
+  } else {
+    const cartProductQuantity = cartProduct.querySelector('.quantity__result');
+    cartProductQuantity.innerHTML = --cartProductQuantity.innerHTML;
+    
+    if (!parseInt(cartProductQuantity.innerHTML)) {
+      cartProduct.remove();
+    }
+
+    const cartQuantityValue = --cartQuantity.innerHTML;
+
+    if (cartQuantityValue) {
+      cartQuantity.innerHTML = cartQuantityValue;
+    } else {
+      cartQuantity.remove();
     }
   }
 };
@@ -410,25 +443,35 @@ const documentActions = (e) => {
     document.body.classList.remove('lock');
   }
 
-  if (!targetElement.closest(".body-layout__menu")) {
+  if (!targetElement.closest('.body-layout__menu')) {
     iconMenu.classList.remove('_active');
     menuBody.classList.remove('_active');
   }
 
-  if (targetElement.closest(".top-sidemenu__close")) {
+  if (targetElement.closest('.top-sidemenu__close')) {
     removeActive();
   }
 
-  if (targetElement.closest(".btn-characteristics__btn")) {
-    const productId = targetElement.closest(".buy-popup").dataset.pid;
+  if (targetElement.closest('.btn-characteristics__btn')) {
+    const productId = targetElement.closest('.buy-popup').dataset.pid;
     addToCart(targetElement, productId);
+    popupClose(targetElement.closest('.buy-popup'));
+    e.preventDefault();
+  }
+
+  if (targetElement.classList.contains('cart-header') || targetElement.closest('.cart-header')) {
+    cartMenu.classList.add('_active');
+    document.body.classList.add('lock');
+  }
+
+  if (targetElement.closest('.delete-actions__btn')) {
+    const productId = targetElement.closest('.items-sidemenu__item').dataset.cartPid;
+    updateCart(targetElement, productId, false);
     e.preventDefault();
   }
 };
 
 document.addEventListener('click', documentActions);
-
-
 
 (function () {
   //проверяем поддержку
