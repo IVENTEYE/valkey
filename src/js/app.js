@@ -6,11 +6,19 @@ checkingFunctions.isWebp();
 const header = document.querySelector('.header'),
   iconMenu = document.querySelector('.menu__icon'),
   menuBody = document.querySelector('.menu'),
-  cartBtn = document.querySelector('.cart-header__btn'),
-  closeMenu = document.querySelector('.top-sidemenu__close'),
+  sidemenuItems = document.querySelectorAll('.items-sidemenu__item'),
   cartMenu = document.querySelector('.cart-header__body'),
   favoriteBtn = document.querySelector('.favorite-header__btn'),
+  emptyState = document.querySelector('.empty'),
   favoriteMenu = document.querySelector('.favorite-sidemenu');
+
+window.addEventListener('load', () => {
+  if (sidemenuItems.length) {
+    emptyState.style.display = 'flex';
+  } else {
+    emptyState.style.display = 'none';
+  }
+});
 
 const removeActive = () => {
   document.body.classList.remove('lock');
@@ -29,13 +37,6 @@ if (iconMenu) {
     menuBody.classList.toggle('_active');
   });
 }
-
-// if (cartBtn) {
-//   cartBtn.addEventListener('click', () => {
-//     cartMenu.classList.add('_active');
-//     document.body.classList.add('lock');
-//   });
-// }
 
 if (favoriteBtn) {
   favoriteBtn.addEventListener('click', () => {
@@ -187,7 +188,7 @@ if (popupLinks.length > 0) {
     item.addEventListener('click', function (e) {
       const popupName = item.getAttribute('href').replace('#', ''),
         currentPopup = document.getElementById(popupName);
-      productId = item.closest('.item-card').dataset.pid;
+      productId = item.closest('.action-card').dataset.pid;
       popupOpen(currentPopup, productId);
       e.preventDefault();
     });
@@ -316,25 +317,88 @@ const cartFooter = document.querySelector('.footer-submenu');
 let totalCartCost = 0;
 
 const addToCart = (productId, productSize) => {
-  const cartCount = document.querySelector('.cart-header__count');
-
   if (productId) {
     updateCart(productId, productSize);
   }
+};
+
+const addToFavorite = (productId) => {
+  if (productId) {
+    updateFavorite(productId);
+  }
+};
+
+const updateFavorite = (productId, isProductAdd = true) => {
+  const favoriteItems = document.querySelector('.favorite-sidemenu .items-sidemenu');
+  const product = document.querySelector(`.item-card[data-pid="${productId}"]`);
+  const favoriteProduct = document.querySelector(`.favorite-sidemenu .items-sidemenu__item[data-pid="${productId}"]`);
+
+  const productImage = product.querySelector('.item-card__photo').innerHTML;
+  const productTitle = product.querySelector('.info-card__title').textContent;
+  const productOldPrice = product.querySelector('.cost-card__item--old span').textContent;
+  const productPrice = product.querySelector('.cost-card__item span').textContent;
+  
+  if (!favoriteProduct) {
+    let productTemplate = `
+        <article data-pid="${productId}" class="items-sidemenu__item action-card">
+            <div class="items-sidemenu__image">
+              ${productImage}
+            </div>
+            <div class="items-sidemenu__info info-items">
+              <div class="info-items__top top-info">
+                <div class="top-info__column">
+                  <h4 class="top-info__title">${productTitle}</h4>
+                </div>
+                <div class="top-info__column">
+                  <div class="top-info__cost cost-card">
+                  ${
+                    productOldPrice.length
+                      ? `<span class="cost-card__item cost-card__item--old">${productOldPrice} ₽</span>`
+                      : ''
+                  }
+                    <span class="cost-card__item">${productPrice} ₽</span>
+                  </div>
+                </div>
+              </div>
+              <div class="info-items__actions actions-info">
+                <button href="popup" class="actions-info__btn main-button popup-link">
+                  В корзину
+                </button>
+                <div class="actions-info__delete delete-actions">
+                  <button class="delete-actions__btn" type="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
+                      <path
+                        d="M232.7 69.9C237.1 56.8 249.3 48 263.1 48L377 48C390.8 48 403 56.8 407.4 69.9L416 96L512 96C529.7 96 544 110.3 544 128C544 145.7 529.7 160 512 160L128 160C110.3 160 96 145.7 96 128C96 110.3 110.3 96 128 96L224 96L232.7 69.9zM128 208L512 208L512 512C512 547.3 483.3 576 448 576L192 576C156.7 576 128 547.3 128 512L128 208zM216 272C202.7 272 192 282.7 192 296L192 488C192 501.3 202.7 512 216 512C229.3 512 240 501.3 240 488L240 296C240 282.7 229.3 272 216 272zM320 272C306.7 272 296 282.7 296 296L296 488C296 501.3 306.7 512 320 512C333.3 512 344 501.3 344 488L344 296C344 282.7 333.3 272 320 272zM424 272C410.7 272 400 282.7 400 296L400 488C400 501.3 410.7 512 424 512C437.3 512 448 501.3 448 488L448 296C448 282.7 437.3 272 424 272z"
+                      />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        `;
+
+    favoriteItems.insertAdjacentHTML('beforeend', productTemplate);
+    product.setAttribute('data-favorited', "");
+  } else {
+    favoriteProduct.remove();
+    product.removeAttribute('data-favorited');
+  }
+
 };
 
 const updateCart = (productId, productSize, isProductAdd = true) => {
   const productsContainer = document.querySelector('.items-sidemenu');
   const currentProduct = products[productId];
 
-  const cart = document.querySelector('.cart-header');
   const cartIcon = document.querySelector('.cart-header__count');
   const cartQuantity = cartIcon.querySelector('span');
-  const cartProduct = document.querySelector(`.items-sidemenu__item[data-cart-pid="${productId}"][data-cart-size="${productSize}"]`);
-  const cartList = document.querySelector('.cart-list');
-  
-  const product = document.querySelector(`[data-pid="${productId}"]`);
-  
+  const cartProduct = document.querySelector(
+    `.items-sidemenu__item[data-cart-pid="${productId}"][data-cart-size="${productSize}"]`,
+  );
+
+  const product = document.querySelector(`.item-card[data-pid="${productId}"]`);
+
   const cartProductImage = product.querySelector('.item-card__photo').innerHTML;
   const cartProductTitle = product.querySelector('.info-card__title').textContent;
   const cartProductOldPrice = product.querySelector('.cost-card__item--old span').textContent;
@@ -409,9 +473,8 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
           </article>
         `;
     productsContainer.insertAdjacentHTML('beforeend', productTemplate);
-
   } else {
-    const cartProductQuantity = cartProduct.querySelector(".quantity__result");
+    const cartProductQuantity = cartProduct.querySelector('.quantity__result');
     cartProductQuantity.innerHTML = ++cartProductQuantity.innerHTML;
   }
 
@@ -421,18 +484,19 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
       cartQuantity.textContent = currentValue + 1;
     } else {
       cartIcon.insertAdjacentHTML('beforeend', `<span>1</span>`);
-      cartFooter.style.display = "block";
+      cartFooter.style.display = 'block';
+      emptyState.style.display = 'none';
     }
 
     totalCartCost += parseInt(cartProductPrice);
-    totalCartCostElement ? totalCartCostElement.innerHTML = totalCartCost : null;
+    totalCartCostElement ? (totalCartCostElement.innerHTML = totalCartCost) : null;
   } else {
     const cartProductQuantity = cartProduct.querySelector('.quantity__result');
 
     let newQuantity = parseInt(cartProductQuantity.textContent) - 2;
     newQuantity = Math.max(0, newQuantity);
     cartProductQuantity.textContent = newQuantity;
-    
+
     if (newQuantity === 0) {
       cartProduct.remove();
     }
@@ -445,11 +509,12 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
         cartQuantity.textContent = cartQuantityValue;
       } else {
         cartQuantity.remove();
-        cartFooter.style.display = "none";
+        cartFooter.style.display = 'none';
+        emptyState.style.display = 'flex';
       }
     }
     totalCartCost = totalCartCost - parseInt(cartProductPrice);
-    totalCartCostElement ? totalCartCostElement.innerHTML = totalCartCost : null;
+    totalCartCostElement ? (totalCartCostElement.innerHTML = totalCartCost) : null;
   }
 };
 
@@ -471,19 +536,25 @@ const documentActions = (e) => {
     removeActive();
   }
 
+  if (targetElement.closest('.action-card__btn')) {
+    const productId = targetElement.closest('.item-card').dataset.pid;
+    
+    addToFavorite(productId);
+  }
+
   if (targetElement.closest('.btn-characteristics__btn')) {
     const productId = targetElement.closest('.buy-popup').dataset.pid;
     const productSize = targetElement.closest('.buy-popup').dataset.size;
     const productForm = document.querySelector('.sizes-characteristics__items');
 
     if (!productSize) {
-      alert("Пожалуйста, выбирете размер.");
+      alert('Пожалуйста, выбирете размер.');
       return;
     }
     addToCart(productId, productSize);
 
     productForm.reset();
-    targetElement.closest('.buy-popup').dataset.size = "";
+    targetElement.closest('.buy-popup').dataset.size = '';
 
     popupClose(targetElement.closest('.buy-popup'));
     e.preventDefault();
@@ -491,7 +562,9 @@ const documentActions = (e) => {
 
   if (targetElement.closest('.item-characteristics__size')) {
     const targetValue = targetElement.closest('.item-characteristics__size span').textContent;
-    targetElement.closest('.buy-popup').dataset.size = targetValue;
+    if (targetValue) {
+      targetElement.closest('.buy-popup').dataset.size = targetValue;
+    }
   }
 
   if (targetElement.classList.contains('cart-header') || targetElement.closest('.cart-header')) {
@@ -499,11 +572,19 @@ const documentActions = (e) => {
     document.body.classList.add('lock');
   }
 
-  if (targetElement.closest('.delete-actions__btn') || targetElement.closest('.quantity__btn--minus')) {
+  if (
+    targetElement.closest('.delete-actions__btn') ||
+    targetElement.closest('.quantity__btn--minus')
+  ) {
     const productId = targetElement.closest('.items-sidemenu__item').dataset.cartPid;
     const productSize = targetElement.closest('.items-sidemenu__item').dataset.cartSize;
 
-    updateCart(productId, productSize, false);
+    if (targetElement.closest('.favorite-sidemenu')) {
+      updateFavorite(targetElement.closest('.items-sidemenu__item').dataset.pid, false);
+    } else {
+      updateCart(productId, productSize, false);
+    }
+
     e.preventDefault();
   }
 

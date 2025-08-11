@@ -80,6 +80,32 @@
   }
 }
 
+.empty {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  &__image {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    margin-bottom: 8px;
+    img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      object-fit: cover;
+    }
+  }
+  &__title {
+    font-size: 18px;
+    text-align: center;
+  }
+}
+
 .sidemenu {
   position: fixed;
   top: 0;
@@ -151,6 +177,8 @@
 }
 
 .items-sidemenu {
+  display: flex;
+  flex-direction: column;
   flex: 1 1 auto;
   overflow-y: auto;
   &__item {
