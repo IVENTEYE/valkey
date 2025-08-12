@@ -287,6 +287,7 @@ body {
   }
   &__content {
     width: 200%;
+    min-width: max-content;
     display: flex;
     justify-content: center;
     white-space: nowrap;
@@ -307,8 +308,11 @@ body {
       }
     }
     @media (max-width: 768px) {
-      .marquee-content {
-        animation-duration: 10s; /* Более быстрая анимация на мобильных */
+      animation-duration: 15s;
+      width: 100%;
+      span {
+        flex: 0 0 auto;
+        padding: 0 2vw;
       }
     }
   }

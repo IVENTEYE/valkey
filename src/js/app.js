@@ -9,14 +9,20 @@ const header = document.querySelector('.header'),
   sidemenuItems = document.querySelectorAll('.items-sidemenu__item'),
   cartMenu = document.querySelector('.cart-header__body'),
   favoriteBtn = document.querySelector('.favorite-header__btn'),
-  emptyState = document.querySelector('.empty'),
+  emptyState = document.querySelectorAll('.empty'),
   favoriteMenu = document.querySelector('.favorite-sidemenu');
 
 window.addEventListener('load', () => {
-  if (sidemenuItems.length) {
-    emptyState.style.display = 'flex';
-  } else {
-    emptyState.style.display = 'none';
+  if (emptyState) {
+    if (sidemenuItems.length) {
+      emptyState.forEach((item) => {
+        item.style.display = 'none';
+      });
+    } else {
+      emptyState.forEach((item) => {
+        item.style.display = 'flex';
+      });
+    }
   }
 });
 
@@ -187,7 +193,7 @@ if (popupLinks.length > 0) {
   popupLinks.forEach((item) => {
     item.addEventListener('click', function (e) {
       console.log(e.target);
-      
+
       const popupName = item.getAttribute('href').replace('#', ''),
         currentPopup = document.getElementById(popupName);
       productId = item.closest('.action-card').dataset.pid;
@@ -330,35 +336,37 @@ const addToFavorite = (productId) => {
   }
 };
 
-const updateFavorite = (productId, isProductAdd = true) => {
+const updateFavorite = (productId) => {
   const favoriteItems = document.querySelector('.favorite-sidemenu .items-sidemenu');
   const product = document.querySelector(`.item-card[data-pid="${productId}"]`);
-  const favoriteProduct = document.querySelector(`.favorite-sidemenu .items-sidemenu__item[data-pid="${productId}"]`);
+  const favoriteProduct = document.querySelector(
+    `.favorite-sidemenu .items-sidemenu__item[data-pid="${productId}"]`,
+  );
 
-  const productImage = product.querySelector('.item-card__photo').innerHTML;
-  const productTitle = product.querySelector('.info-card__title').textContent;
-  const productOldPrice = product.querySelector('.cost-card__item--old span').textContent;
-  const productPrice = product.querySelector('.cost-card__item span').textContent;
-  
+  const productImage = product.querySelector('.item-card__photo');
+  const productTitle = product.querySelector('.info-card__title');
+  const productOldPrice = product.querySelector('.cost-card__item--old span');
+  const productPrice = product.querySelector('.cost-card__item span');
+
   if (!favoriteProduct) {
     let productTemplate = `
         <article data-pid="${productId}" class="items-sidemenu__item action-card">
             <div class="items-sidemenu__image">
-              ${productImage}
+              ${productImage ? productImage.innerHTML : ""}
             </div>
             <div class="items-sidemenu__info info-items">
               <div class="info-items__top top-info">
                 <div class="top-info__column">
-                  <h4 class="top-info__title">${productTitle}</h4>
+                  <h4 class="top-info__title">${productTitle ? productTitle.textContent : ""}</h4>
                 </div>
                 <div class="top-info__column">
                   <div class="top-info__cost cost-card">
                   ${
-                    productOldPrice.length
-                      ? `<span class="cost-card__item cost-card__item--old">${productOldPrice} ₽</span>`
+                    productOldPrice
+                      ? `<span class="cost-card__item cost-card__item--old">${productOldPrice.textContent} ₽</span>`
                       : ''
                   }
-                    <span class="cost-card__item">${productPrice} ₽</span>
+                    <span class="cost-card__item">${productPrice ? productPrice.textContent : ""} ₽</span>
                   </div>
                 </div>
               </div>
@@ -381,12 +389,21 @@ const updateFavorite = (productId, isProductAdd = true) => {
         `;
 
     favoriteItems.insertAdjacentHTML('beforeend', productTemplate);
-    product.setAttribute('data-favorited', "");
+    product.setAttribute('data-favorited', '');
+    emptyState.forEach((item) => {
+      if (item.closest('.favorite-sidemenu')) {
+        item.style.display = 'none';
+      }
+    });
   } else {
     favoriteProduct.remove();
     product.removeAttribute('data-favorited');
+    emptyState.forEach((item) => {
+      if (item.closest('.favorite-sidemenu')) {
+        item.style.display = 'flex';
+      }
+    });
   }
-
 };
 
 const updateCart = (productId, productSize, isProductAdd = true) => {
@@ -401,36 +418,36 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
 
   const product = document.querySelector(`.item-card[data-pid="${productId}"]`);
 
-  const cartProductImage = product.querySelector('.item-card__photo').innerHTML;
-  const cartProductTitle = product.querySelector('.info-card__title').textContent;
-  const cartProductOldPrice = product.querySelector('.cost-card__item--old span').textContent;
-  const cartProductPrice = product.querySelector('.cost-card__item span').textContent;
+  const cartProductImage = product.querySelector('.item-card__photo');
+  const cartProductTitle = product.querySelector('.info-card__title');
+  const cartProductOldPrice = product.querySelector('.cost-card__item--old span');
+  const cartProductPrice = product.querySelector('.cost-card__item span');
 
   if (!cartProduct) {
-    const discountPercent =
-      'oldPrice' in currentProduct
-        ? Math.round(100 - (currentProduct.price / currentProduct.oldPrice) * 100)
-        : 0;
-
+    const priceProduct = cartProductPrice.textContent;
+    const oldPriceProduct = cartProductOldPrice.textContent;
+    const discountPercent = Math.round(100 - (Number(priceProduct) / Number(oldPriceProduct)) * 100);
+    console.log(discountPercent, cartProductOldPrice);
+    
     let productTemplate = `
         <article data-cart-pid="${productId}" data-cart-size="${productSize}" class="items-sidemenu__item">
             <div class="items-sidemenu__image">
-              ${cartProductImage}
+              ${cartProductImage ? cartProductImage.innerHTML : ""}
             </div>
             <div class="items-sidemenu__info info-items">
               <div class="info-items__top top-info">
                 <div class="top-info__column">
-                  <h4 class="top-info__title">${cartProductTitle}</h4>
+                  <h4 class="top-info__title">${cartProductTitle ? cartProductTitle.textContent : ""}</h4>
                   <div class="top-info__size">Размер: <span>${productSize}</span></div>
                 </div>
                 <div class="top-info__column">
                   <div class="top-info__cost cost-card">
                   ${
-                    cartProductOldPrice.length
-                      ? `<span class="cost-card__item cost-card__item--old">${cartProductOldPrice} ₽</span>`
+                    cartProductOldPrice
+                      ? `<span class="cost-card__item cost-card__item--old">${cartProductOldPrice ? cartProductOldPrice.textContent : ""} ₽</span>`
                       : ''
                   }
-                    <span class="cost-card__item">${cartProductPrice} ₽</span>
+                    <span class="cost-card__item">${cartProductPrice ? cartProductPrice.textContent : ""} ₽</span>
                   </div>
                   ${
                     discountPercent > 0
@@ -487,7 +504,11 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
     } else {
       cartIcon.insertAdjacentHTML('beforeend', `<span>1</span>`);
       cartFooter.style.display = 'block';
-      emptyState.style.display = 'none';
+      emptyState.forEach((item) => {
+        if (item.closest('.cart-header__body')) {
+          item.style.display = 'none';
+        }
+      });
     }
 
     totalCartCost += parseInt(cartProductPrice);
@@ -512,7 +533,11 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
       } else {
         cartQuantity.remove();
         cartFooter.style.display = 'none';
-        emptyState.style.display = 'flex';
+        emptyState.forEach((item) => {
+          if (item.closest('.cart-header__body')) {
+            item.style.display = 'flex';
+          }
+        });
       }
     }
     totalCartCost = totalCartCost - parseInt(cartProductPrice);
@@ -540,7 +565,7 @@ const documentActions = (e) => {
 
   if (targetElement.closest('.action-card__btn')) {
     const productId = targetElement.closest('.item-card').dataset.pid;
-    
+
     addToFavorite(productId);
   }
 
@@ -562,10 +587,13 @@ const documentActions = (e) => {
     e.preventDefault();
   }
 
+
   if (targetElement.closest('.item-characteristics__size')) {
-    const targetValue = targetElement.closest('.item-characteristics__size span').textContent;
+    console.log(targetElement);
+    
+    const targetValue = targetElement.closest('.item-characteristics__size');
     if (targetValue) {
-      targetElement.closest('.buy-popup').dataset.size = targetValue;
+      targetElement.closest('.buy-popup').dataset.size = targetValue.querySelector('span').textContent;
     }
   }
 
@@ -601,7 +629,7 @@ const documentActions = (e) => {
   if (targetElement.closest('.favorite-sidemenu .actions-info__btn')) {
     const productId = targetElement.closest('.items-sidemenu__item').dataset.pid;
     const popupName = targetElement.getAttribute('href').replace('#', ''),
-        currentPopup = document.getElementById(popupName);
+      currentPopup = document.getElementById(popupName);
     popupOpen(currentPopup, productId);
     favoriteMenu.classList.remove('_active');
   }
