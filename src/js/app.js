@@ -186,6 +186,8 @@ let productId;
 if (popupLinks.length > 0) {
   popupLinks.forEach((item) => {
     item.addEventListener('click', function (e) {
+      console.log(e.target);
+      
       const popupName = item.getAttribute('href').replace('#', ''),
         currentPopup = document.getElementById(popupName);
       productId = item.closest('.action-card').dataset.pid;
@@ -594,6 +596,14 @@ const documentActions = (e) => {
 
     updateCart(productId, productSize);
     e.preventDefault();
+  }
+
+  if (targetElement.closest('.favorite-sidemenu .actions-info__btn')) {
+    const productId = targetElement.closest('.items-sidemenu__item').dataset.pid;
+    const popupName = targetElement.getAttribute('href').replace('#', ''),
+        currentPopup = document.getElementById(popupName);
+    popupOpen(currentPopup, productId);
+    favoriteMenu.classList.remove('_active');
   }
 };
 
