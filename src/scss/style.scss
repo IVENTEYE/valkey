@@ -611,7 +611,7 @@ body {
   transition: all 0.8s ease;
   height: 100%;
   @media (min-width: 991.99px) {
-    padding: 100px 10px;
+    padding: 40px 10px;
     align-items: center;
   }
 }
@@ -772,7 +772,17 @@ body {
   background-color: #fff;
 }
 
+.characteristics-popup__cost {
+    font-size: 18px;
+    font-weight: 600;
+}
+
 .body-characteristics {
+  &__cost {
+    display: flex;
+    gap: 5px;
+    margin: 8px 0 10px 0;
+  }
   &__title {
     font-size: 22px;
     margin-bottom: 3px;
@@ -792,8 +802,4 @@ body {
     gap: 10px;
     flex-wrap: wrap;
   }
-}
-
-.cost-card {
-  margin-bottom: 10px;
 }

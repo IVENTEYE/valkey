@@ -192,7 +192,6 @@ let productId;
 if (popupLinks.length > 0) {
   popupLinks.forEach((item) => {
     item.addEventListener('click', function (e) {
-      console.log(e.target);
 
       const popupName = item.getAttribute('href').replace('#', ''),
         currentPopup = document.getElementById(popupName);
@@ -242,8 +241,8 @@ function popupOpen(currentPopup, productId) {
     }
 
     document.querySelector('.body-characteristics__title').textContent = product.title;
-    document.querySelector('.cost-card__item--old').textContent = product.oldPrice;
-    document.querySelector('.cost-card__item').textContent = product.price;
+    document.querySelector('.characteristics-popup__cost--old > span').textContent = product.oldPrice;
+    document.querySelector('.characteristics-popup__cost:not(.characteristics-popup__cost--old) > span').textContent = product.price;
 
     const description = document.querySelectorAll('.body-characteristics__descrybe p');
     description[0].innerHTML = product.description;
@@ -345,8 +344,8 @@ const updateFavorite = (productId) => {
 
   const productImage = product.querySelector('.item-card__photo');
   const productTitle = product.querySelector('.info-card__title');
-  const productOldPrice = product.querySelector('.cost-card__item--old span');
-  const productPrice = product.querySelector('.cost-card__item span');
+  const productOldPrice = product.querySelector('.cost-card__item--old > span');
+  const productPrice = product.querySelector('.cost-card__item:not(.cost-card__item--old) > span');
 
   if (!favoriteProduct) {
     let productTemplate = `
@@ -399,7 +398,7 @@ const updateFavorite = (productId) => {
     favoriteProduct.remove();
     product.removeAttribute('data-favorited');
     emptyState.forEach((item) => {
-      if (item.closest('.favorite-sidemenu')) {
+      if (item.closest('.favorite-sidemenu') && favoriteItems.children.length === 1) {
         item.style.display = 'flex';
       }
     });
@@ -408,8 +407,6 @@ const updateFavorite = (productId) => {
 
 const updateCart = (productId, productSize, isProductAdd = true) => {
   const productsContainer = document.querySelector('.items-sidemenu');
-  const currentProduct = products[productId];
-
   const cartIcon = document.querySelector('.cart-header__count');
   const cartQuantity = cartIcon.querySelector('span');
   const cartProduct = document.querySelector(
@@ -417,17 +414,14 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
   );
 
   const product = document.querySelector(`.item-card[data-pid="${productId}"]`);
-
+  
   const cartProductImage = product.querySelector('.item-card__photo');
   const cartProductTitle = product.querySelector('.info-card__title');
-  const cartProductOldPrice = product.querySelector('.cost-card__item--old span');
-  const cartProductPrice = product.querySelector('.cost-card__item span');
+  const cartProductOldPrice = product.querySelector('.cost-card__item--old > span');
+  const cartProductPrice = product.querySelector('.cost-card__item:not(.cost-card__item--old) > span');
 
   if (!cartProduct) {
-    const priceProduct = cartProductPrice.textContent;
-    const oldPriceProduct = cartProductOldPrice.textContent;
-    const discountPercent = Math.round(100 - (Number(priceProduct) / Number(oldPriceProduct)) * 100);
-    console.log(discountPercent, cartProductOldPrice);
+    const discountPercent = cartProductPrice && cartProductOldPrice ? Math.round(100 - (parseInt(cartProductPrice.textContent) / parseInt(cartProductOldPrice.textContent)) * 100) : 0;
     
     let productTemplate = `
         <article data-cart-pid="${productId}" data-cart-size="${productSize}" class="items-sidemenu__item">
@@ -511,7 +505,7 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
       });
     }
 
-    totalCartCost += parseInt(cartProductPrice);
+    totalCartCost += parseInt(cartProductPrice.textContent);
     totalCartCostElement ? (totalCartCostElement.innerHTML = totalCartCost) : null;
   } else {
     const cartProductQuantity = cartProduct.querySelector('.quantity__result');
@@ -540,7 +534,7 @@ const updateCart = (productId, productSize, isProductAdd = true) => {
         });
       }
     }
-    totalCartCost = totalCartCost - parseInt(cartProductPrice);
+    totalCartCost = totalCartCost - parseInt(cartProductPrice.textContent);
     totalCartCostElement ? (totalCartCostElement.innerHTML = totalCartCost) : null;
   }
 };
@@ -588,9 +582,7 @@ const documentActions = (e) => {
   }
 
 
-  if (targetElement.closest('.item-characteristics__size')) {
-    console.log(targetElement);
-    
+  if (targetElement.closest('.item-characteristics__size')) {    
     const targetValue = targetElement.closest('.item-characteristics__size');
     if (targetValue) {
       targetElement.closest('.buy-popup').dataset.size = targetValue.querySelector('span').textContent;
